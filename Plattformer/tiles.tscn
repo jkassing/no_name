@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sprites/Layer_0002_7.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 122.988, 125.252 )
+
+[node name="GroundTileset" type="Node2D"]
+
+[node name="Ground00" type="Sprite" parent="."]
+position = Vector2( 335, 65.2096 )
+scale = Vector2( 0.0416667, 0.0399196 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 288, 210, 240, 240 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground00"]
+position = Vector2( -53.1084, 161.653 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground00/StaticBody2D"]
+visible = false
+position = Vector2( 53.1084, -161.653 )
+shape = SubResource( 1 )
