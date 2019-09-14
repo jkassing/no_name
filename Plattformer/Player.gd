@@ -4,6 +4,7 @@ var motion = Vector2()
 export var SPEED = 400
 export var GRAVITY = 40
 export var JUMP_FORCE = -1200
+export(int) var health = 3
 const FLOOR = Vector2(0, -1)
 var is_attacking = false
 var direction = 1
@@ -96,7 +97,7 @@ func _physics_process(delta):
             
         if $RayCast2D.enabled == true && $RayCast2D.is_colliding():
             if "Enemy" in $RayCast2D.get_collider().name:
-                $RayCast2D.get_collider().dead()
+                $RayCast2D.get_collider().hit()
                 $RayCast2D.enabled = false
             
             
@@ -105,10 +106,13 @@ func _physics_process(delta):
         if get_slide_count() > 0:
             for i in range(get_slide_count()):
                 if "Enemy" in get_slide_collision(i).collider.name:
-                    dead()
+                    hit()
         
         
-                
+func hit():
+    health -= 1
+    if health == 0:
+        dead()               
 
 func dead():
     is_dead = true

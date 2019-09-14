@@ -1,7 +1,8 @@
 extends KinematicBody2D
 
 const GRAVITY = 40
-const SPEED = 150
+export(int) var speed = 150
+export(int) var health = 2
 const FLOOR = Vector2(0, -1)
 
 var velocity = Vector2()
@@ -19,10 +20,15 @@ func dead():
     $CollisionPolygon2D.call_deferred("set_disabled",true)
     $Timer.start()
 
+func hit():
+    health -= 1
+    if health <= 0:
+        dead()
+    
 func _process(delta):
     if is_dead == false:
         
-        velocity.x = SPEED * direction
+        velocity.x = speed * direction
         
         if direction == 1:
                 $AnimatedSprite.flip_h = false
@@ -37,7 +43,7 @@ func _process(delta):
     if get_slide_count() > 0:
             for i in range(get_slide_count()):
                 if "Player" in get_slide_collision(i).collider.name:
-                    get_slide_collision(i).collider.dead()
+                    get_slide_collision(i).collider.hit()
     
     if is_on_wall():
         direction *= -1
