@@ -17,6 +17,9 @@ color = Color( 0.529412, 0.796078, 0.898039, 0.741176 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 110, 138.64 )
 scale = Vector2( 6, 6 )
+SPEED = 400
+GRAVITY = 40
+JUMP_FORCE = -1200
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true

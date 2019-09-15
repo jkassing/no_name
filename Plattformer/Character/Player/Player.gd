@@ -1,15 +1,8 @@
-extends KinematicBody2D
+extends "res://Character/Character.gd"
 
-var motion = Vector2()
-export var SPEED = 400
-export var GRAVITY = 40
-export var JUMP_FORCE = -1200
-export(int) var health = 3
-const FLOOR = Vector2(0, -1)
-var is_attacking = false
-# warning-ignore:unused_class_variable
-var direction = 1
-var is_dead = false
+
+
+
 var just_got_hit = false
 
 const FIREBALL = preload("res://unusedRes/Object/Fireball.tscn")
