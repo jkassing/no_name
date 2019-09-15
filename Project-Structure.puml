@@ -1,0 +1,92 @@
+@startuml
+
+class Character extends KinematicBody2D
+class Player extends Character
+class Enemy extends Character
+class ConcreteEnemy extends Enemy
+class EnemyBehaviour
+class Inventory
+class Item
+class Cyberware
+class Weapon
+class RangeWeapon extends Weapon
+class ProjectileWeapon extends RangeWeapon
+class EnergyWeapon extends RangeWeapon
+class MeleeWeapon extends Weapon
+class Consumable extends Item
+
+
+Character *-- Health
+Player *-- Inventory
+Enemy *-- Weapon
+Enemy *-- EnemyBehaviour
+
+Inventory *-- "1..*" Item
+Inventory *-- "0..*" Weapon
+Inventory *-- Money
+Inventory *-- "0..*" Cyberware
+
+class Character {
+    GRAVITY : int
+    FLOOR : Vector2
+    speed : int
+    velocity : Vector2
+    direction : {-1 || 1}
+    is_dead : bool
+    is_vulnerable : bool
+    _attack()
+    _die()
+    _got_hit()
+
+}
+
+class Player {
+    eq_cyberware : Cyberware
+    eq_range_wpn : RangeWeapon
+    eq_melee_wpn : MeleeWeapon
+}
+
+class Enemy {
+    + state : Enemy. STATE
+    eq_wpn : Weapon
+    target_pos : Vector2
+}
+enum Enemy.STATE {
+    PASSIVE
+    ENGAGED
+    SEARCHING
+}
+
+class Health {
+   -health : int
+   -shield ?
+   +take_damage(int : damage)
+   +heal(int : damage)
+}
+
+
+
+class Weapon {
+    damage : int
+}
+
+class MeleeWeapon {
+    + range : int
+    + light_attack()
+    + heavy_attack()
+}
+
+class RangeWeapon {
+    + can_attack()
+}
+
+class ProjectileWeapon {
+    - _ammo : int
+    _ magazine_size : int
+    - magazine : int
+    + reload()
+    + add_ammo()
+
+}
+
+@enduml
