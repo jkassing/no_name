@@ -18,6 +18,7 @@ func dead():
     velocity = Vector2(0,0)
     $AnimatedSprite.play("die")
     $CollisionPolygon2D.call_deferred("set_disabled",true)
+    #get_parent().get_node("ScreenShake").screen_shake(1, 10, 100)
     $Timer.start()
 
 func hit():

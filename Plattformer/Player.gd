@@ -7,11 +7,16 @@ export var JUMP_FORCE = -1200
 export(int) var health = 3
 const FLOOR = Vector2(0, -1)
 var is_attacking = false
+# warning-ignore:unused_class_variable
 var direction = 1
 var is_dead = false
+var just_got_hit = false
 
 const FIREBALL = preload("res://Fireball.tscn")
 
+signal got_hit
+
+# warning-ignore:unused_argument
 func _physics_process(delta):
     
     if is_dead == false:
@@ -110,9 +115,16 @@ func _physics_process(delta):
         
         
 func hit():
-    health -= 1
-    if health == 0:
-        dead()               
+    if just_got_hit == false:
+        health -= 1
+        just_got_hit = true
+        get_parent().get_node("ScreenShake").screen_shake(1, 10, 100)
+        emit_signal("got_hit")
+        if health == 0:
+            dead()      
+        else:
+            $HitTimer.start()
+                 
 
 func dead():
     is_dead = true
@@ -128,4 +140,9 @@ func _on_AnimatedSprite_animation_finished():
 
 
 func _on_Timer_timeout():
+# warning-ignore:return_value_discarded
     get_tree().change_scene("TitleScreen.tscn")
+
+
+func _on_HitTimer_timeout():
+    just_got_hit = false

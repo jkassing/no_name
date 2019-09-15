@@ -66,7 +66,7 @@ position = Vector2( 1.52679, 0.32959 )
 scale = Vector2( 0.386237, 0.426092 )
 frames = SubResource( 1 )
 animation = "walk"
-frame = 9
+frame = 3
 playing = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
