@@ -18,16 +18,10 @@ _global_script_classes=[ {
 "class": "Health",
 "language": "GDScript",
 "path": "res://Character/Shared/Health.gd"
-}, {
-"base": "Node",
-"class": "health",
-"language": "GDScript",
-"path": "res://Character/Shared/new_script.gd"
 } ]
 _global_script_class_icons={
 "Character": "",
-"Health": "",
-"health": ""
+"Health": ""
 }
 
 [application]
