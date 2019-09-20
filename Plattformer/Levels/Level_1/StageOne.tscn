@@ -40,35 +40,41 @@ position = Vector2( 31.7335, 34.9068 )
 ] instance=ExtResource( 3 )]
 position = Vector2( 980.463, 95.0496 )
 scale = Vector2( 1.00897, 0.943799 )
+GRAVITY = 40
 
 [node name="Enemy2" parent="." groups=[
 "Enemies",
 ] instance=ExtResource( 3 )]
 position = Vector2( 1341.14, 316.711 )
+GRAVITY = 40
 
 [node name="Enemy3" parent="." groups=[
 "Enemies",
 ] instance=ExtResource( 3 )]
 position = Vector2( 2711.03, 146.018 )
 scale = Vector2( 1.00897, 0.943799 )
+GRAVITY = 40
 
 [node name="Enemy5" parent="." groups=[
 "Enemies",
 ] instance=ExtResource( 3 )]
 position = Vector2( 2841.37, 579.106 )
 scale = Vector2( 1.00897, 0.943799 )
+GRAVITY = 40
 
 [node name="Enemy6" parent="." groups=[
 "Enemies",
 ] instance=ExtResource( 3 )]
 position = Vector2( 3787.15, 560.47 )
 scale = Vector2( 1.00897, 0.943799 )
+GRAVITY = 40
 
 [node name="Enemy4" parent="." groups=[
 "Enemies",
 ] instance=ExtResource( 3 )]
 position = Vector2( 2241.54, 374.587 )
 scale = Vector2( 1.00897, 0.943799 )
+GRAVITY = 40
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 4 )

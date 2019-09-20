@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Character/Enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://unusedRes/Sprites/IceWizard/Stand/0.png" type="Texture" id=2]
@@ -11,27 +11,29 @@
 [ext_resource path="res://unusedRes/Sprites/IceWizard/Stand/8.png" type="Texture" id=9]
 [ext_resource path="res://unusedRes/Sprites/IceWizard/Stand/7.png" type="Texture" id=10]
 [ext_resource path="res://unusedRes/Sprites/IceWizard/Stand/9.png" type="Texture" id=11]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Walk/0.png" type="Texture" id=12]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Walk/1.png" type="Texture" id=13]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Walk/2.png" type="Texture" id=14]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Walk/3.png" type="Texture" id=15]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Walk/4.png" type="Texture" id=16]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Walk/5.png" type="Texture" id=17]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Walk/6.png" type="Texture" id=18]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Walk/7.png" type="Texture" id=19]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Walk/8.png" type="Texture" id=20]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Walk/9.png" type="Texture" id=21]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/8.png" type="Texture" id=22]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/0.png" type="Texture" id=23]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/1.png" type="Texture" id=24]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/2.png" type="Texture" id=25]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/3.png" type="Texture" id=26]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/4.png" type="Texture" id=27]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/5.png" type="Texture" id=28]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/6.png" type="Texture" id=29]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/7.png" type="Texture" id=30]
-
-
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/0.png" type="Texture" id=12]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/1.png" type="Texture" id=13]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/2.png" type="Texture" id=14]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/3.png" type="Texture" id=15]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/4.png" type="Texture" id=16]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/5.png" type="Texture" id=17]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/6.png" type="Texture" id=18]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/7.png" type="Texture" id=19]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/8.png" type="Texture" id=20]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Walk/0.png" type="Texture" id=21]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Walk/1.png" type="Texture" id=22]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Walk/2.png" type="Texture" id=23]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Walk/3.png" type="Texture" id=24]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Walk/4.png" type="Texture" id=25]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Walk/5.png" type="Texture" id=26]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Walk/6.png" type="Texture" id=27]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Walk/7.png" type="Texture" id=28]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Walk/8.png" type="Texture" id=29]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Walk/9.png" type="Texture" id=30]
+[ext_resource path="res://Character/Enemy/Control.gd" type="Script" id=31]
+[ext_resource path="res://Sprites/Health/New Piskel-1.png (2).png" type="Texture" id=32]
+[ext_resource path="res://Sprites/Health/New Piskel-2.png (1).png" type="Texture" id=33]
+[ext_resource path="res://Sprites/Health/New Piskel-3.png (1).png" type="Texture" id=34]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -40,35 +42,33 @@ animations = [ {
 "name": "idle",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ) ],
+"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
+"loop": false,
+"name": "die",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ) ],
 "loop": true,
 "name": "walk",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 22 ) ],
+"frames": [ ExtResource( 20 ) ],
 "loop": true,
 "name": "dead",
 "speed": 0.0
-}, {
-"frames": [ ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 22 ) ],
-"loop": false,
-"name": "die",
-"speed": 12.0
 } ]
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
 position = Vector2( 0, 0.279 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
+GRAVITY = 40
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 1.52679, 0.32959 )
 scale = Vector2( 0.386237, 0.426092 )
 frames = SubResource( 1 )
 animation = "walk"
-frame = 3
+frame = 2
 playing = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
@@ -85,4 +85,20 @@ one_shot = true
 position = Vector2( -2.97197, 4.59307 )
 scale = Vector2( 4.1611, 6.32254 )
 polygon = PoolVector2Array( 0.270849, -9.63732, 7.67285, -7.92801, 9.23116, -2.80008, 6.89369, 1.98599, 7.54298, 4.97729, 8.84158, 6.77206, 8.58186, 9.93429, -5.18326, 10.0198, -5.18326, 6.4302, -9.85821, 4.29356, -6.22214, -0.834373, -5.44298, -8.18441 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 31 )
+
+[node name="HealthBar" type="TextureProgress" parent="Control"]
+margin_left = -30.1235
+margin_top = -97.4567
+margin_right = 33.8765
+margin_bottom = -33.4567
+value = 100.0
+texture_under = ExtResource( 32 )
+texture_over = ExtResource( 33 )
+texture_progress = ExtResource( 34 )
+tint_progress = Color( 0.635294, 0.0588235, 0.0588235, 1 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

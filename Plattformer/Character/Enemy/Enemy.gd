@@ -1,35 +1,28 @@
-extends KinematicBody2D
-
-const GRAVITY = 40
-export(int) var speed = 150
-export(int) var health = 2
-const FLOOR = Vector2(0, -1)
-
-var velocity = Vector2()
-
-var direction = 1
-var is_dead = false
+extends "res://Character/Character.gd"
 
 func _ready():
-    pass 
+    SPEED = 150
+    health.set_health(2)
+    
     
 func dead():
     is_dead = true
-    velocity = Vector2(0,0)
+    motion = Vector2(0,0)
     $AnimatedSprite.play("die")
     $CollisionPolygon2D.call_deferred("set_disabled",true)
     #get_parent().get_node("ScreenShake").screen_shake(1, 10, 100)
     $Timer.start()
 
 func hit():
-    health -= 1
-    if health <= 0:
+    health.take_damage(1)
+    $Control._on_health_updated(0, 50)
+    if health.health == 0:
         dead()
     
 func _process(delta):
     if is_dead == false:
         
-        velocity.x = speed * direction
+        motion.x = SPEED * direction
         
         if direction == 1:
                 $AnimatedSprite.flip_h = false
@@ -37,9 +30,9 @@ func _process(delta):
                 $AnimatedSprite.flip_h = true
         $AnimatedSprite.play("walk")
         
-        velocity.y += GRAVITY
+        motion.y += GRAVITY
         
-        velocity = move_and_slide(velocity, FLOOR)
+        motion = move_and_slide(motion, FLOOR)
     
     if get_slide_count() > 0:
             for i in range(get_slide_count()):

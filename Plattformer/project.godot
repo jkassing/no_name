@@ -8,9 +8,26 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Character",
+"language": "GDScript",
+"path": "res://Character/Character.gd"
+}, {
+"base": "Node",
+"class": "Health",
+"language": "GDScript",
+"path": "res://Character/Shared/Health.gd"
+}, {
+"base": "Node",
+"class": "health",
+"language": "GDScript",
+"path": "res://Character/Shared/new_script.gd"
+} ]
 _global_script_class_icons={
-
+"Character": "",
+"Health": "",
+"health": ""
 }
 
 [application]

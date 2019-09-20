@@ -1,13 +1,15 @@
 extends "res://Character/Character.gd"
 
-
-
-
-var just_got_hit = false
-
 const FIREBALL = preload("res://unusedRes/Object/Fireball.tscn")
 
+var just_got_hit = false
 signal got_hit
+
+func _ready():
+    GRAVITY = 40
+    SPEED = 400
+    JUMP_FORCE = -1200
+    health.set_health(3)
 
 # warning-ignore:unused_argument
 func _physics_process(delta):
@@ -109,11 +111,11 @@ func _physics_process(delta):
         
 func hit():
     if just_got_hit == false:
-        health -= 1
+        health.take_damage(1)
         just_got_hit = true
         get_parent().get_node("ScreenShake").screen_shake(1, 10, 100)
         emit_signal("got_hit")
-        if health == 0:
+        if health.health == 0:
             dead()      
         else:
             $HitTimer.start()
@@ -134,7 +136,7 @@ func _on_AnimatedSprite_animation_finished():
 
 func _on_Timer_timeout():
 # warning-ignore:return_value_discarded
-    get_tree().change_scene("TitleScreen.tscn")
+    get_tree().change_scene("res://Menu/TitleScreen/TitleScreen.tscn")
 
 
 func _on_HitTimer_timeout():
