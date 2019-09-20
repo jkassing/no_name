@@ -7,6 +7,7 @@ func _ready():
     
 func dead():
     is_dead = true
+    $Control.visible = false
     motion = Vector2(0,0)
     $AnimatedSprite.play("die")
     $CollisionPolygon2D.call_deferred("set_disabled",true)

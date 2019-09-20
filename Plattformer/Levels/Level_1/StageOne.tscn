@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Character/Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Character/Shared/health.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Character/Shared/Health.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Character/Enemy/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Levels/Level_1/newTiles.tres" type="TileSet" id=4]
 [ext_resource path="res://Effects/ScreenShake.gd" type="Script" id=5]
@@ -33,48 +33,41 @@ smoothing_speed = 10.0
 [node name="CanvasLayer" type="CanvasLayer" parent="Player/Camera2D"]
 
 [node name="Health" parent="Player/Camera2D/CanvasLayer" instance=ExtResource( 2 )]
-position = Vector2( 31.7335, 34.9068 )
 
 [node name="Enemy1" parent="." groups=[
 "Enemies",
 ] instance=ExtResource( 3 )]
 position = Vector2( 980.463, 95.0496 )
 scale = Vector2( 1.00897, 0.943799 )
-GRAVITY = 40
 
 [node name="Enemy2" parent="." groups=[
 "Enemies",
 ] instance=ExtResource( 3 )]
 position = Vector2( 1341.14, 316.711 )
-GRAVITY = 40
 
 [node name="Enemy3" parent="." groups=[
 "Enemies",
 ] instance=ExtResource( 3 )]
 position = Vector2( 2711.03, 146.018 )
 scale = Vector2( 1.00897, 0.943799 )
-GRAVITY = 40
 
 [node name="Enemy5" parent="." groups=[
 "Enemies",
 ] instance=ExtResource( 3 )]
 position = Vector2( 2841.37, 579.106 )
 scale = Vector2( 1.00897, 0.943799 )
-GRAVITY = 40
 
 [node name="Enemy6" parent="." groups=[
 "Enemies",
 ] instance=ExtResource( 3 )]
 position = Vector2( 3787.15, 560.47 )
 scale = Vector2( 1.00897, 0.943799 )
-GRAVITY = 40
 
 [node name="Enemy4" parent="." groups=[
 "Enemies",
 ] instance=ExtResource( 3 )]
 position = Vector2( 2241.54, 374.587 )
 scale = Vector2( 1.00897, 0.943799 )
-GRAVITY = 40
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 4 )
@@ -86,5 +79,4 @@ tile_data = PoolIntArray( -1507156, 4, 0, -1441620, 4, 0, -1376084, 4, 0, -13105
 script = ExtResource( 5 )
 
 [node name="Tween" type="Tween" parent="ScreenShake"]
-[connection signal="got_hit" from="Player" to="Player/Camera2D/CanvasLayer/Health" method="_on_Player_got_hit"]
 [connection signal="tween_completed" from="ScreenShake/Tween" to="ScreenShake" method="_on_Tween_tween_completed"]

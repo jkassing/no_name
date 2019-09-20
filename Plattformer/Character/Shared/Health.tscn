@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Character/Shared/healthbar.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Health/New Piskel-1.png (2).png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Health/New Piskel-2.png (1).png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Health/New Piskel-3.png (1).png" type="Texture" id=4]
+
+[node name="Health" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="HealthUnder" type="TextureProgress" parent="."]
+margin_left = 23.0
+margin_top = -28.0
+margin_right = 87.0
+margin_bottom = 36.0
+rect_scale = Vector2( 4, 2 )
+value = 100.0
+texture_under = ExtResource( 2 )
+texture_over = ExtResource( 3 )
+texture_progress = ExtResource( 4 )
+tint_progress = Color( 0.972549, 0.184314, 0.0235294, 1 )
+
+[node name="HealthOver" type="TextureProgress" parent="."]
+margin_left = 23.0
+margin_top = -28.0
+margin_right = 87.0
+margin_bottom = 36.0
+rect_scale = Vector2( 4, 2 )
+value = 100.0
+texture_over = ExtResource( 3 )
+texture_progress = ExtResource( 4 )
+tint_progress = Color( 0.0470588, 0.92549, 0.0352941, 1 )
+
+[node name="UpdateTween" type="Tween" parent="."]

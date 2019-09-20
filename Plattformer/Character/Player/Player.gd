@@ -114,7 +114,7 @@ func hit():
         health.take_damage(1)
         just_got_hit = true
         get_parent().get_node("ScreenShake").screen_shake(1, 10, 100)
-        emit_signal("got_hit")
+        get_parent().get_node("Player/Camera2D/CanvasLayer/Health")._on_health_updated(0, 33)
         if health.health == 0:
             dead()      
         else:
