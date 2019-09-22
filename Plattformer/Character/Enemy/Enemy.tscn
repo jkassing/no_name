@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Character/Enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://unusedRes/Sprites/IceWizard/Stand/0.png" type="Texture" id=2]
@@ -21,19 +21,27 @@
 [ext_resource path="res://unusedRes/Sprites/IceWizard/Walk/7.png" type="Texture" id=19]
 [ext_resource path="res://unusedRes/Sprites/IceWizard/Walk/8.png" type="Texture" id=20]
 [ext_resource path="res://unusedRes/Sprites/IceWizard/Walk/9.png" type="Texture" id=21]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/8.png" type="Texture" id=22]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/0.png" type="Texture" id=23]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/1.png" type="Texture" id=24]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/2.png" type="Texture" id=25]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/3.png" type="Texture" id=26]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/4.png" type="Texture" id=27]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/5.png" type="Texture" id=28]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/6.png" type="Texture" id=29]
-[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/7.png" type="Texture" id=30]
-[ext_resource path="res://Character/Enemy/healthbar.gd" type="Script" id=31]
-[ext_resource path="res://Sprites/Health/New Piskel-1.png (2).png" type="Texture" id=32]
-[ext_resource path="res://Sprites/Health/New Piskel-2.png (1).png" type="Texture" id=33]
-[ext_resource path="res://Sprites/Health/New Piskel-3.png (1).png" type="Texture" id=34]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/0.png" type="Texture" id=22]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/1.png" type="Texture" id=23]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/2.png" type="Texture" id=24]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/3.png" type="Texture" id=25]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/4.png" type="Texture" id=26]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/5.png" type="Texture" id=27]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/6.png" type="Texture" id=28]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/7.png" type="Texture" id=29]
+[ext_resource path="res://unusedRes/Sprites/IceWizard/Die/8.png" type="Texture" id=30]
+[ext_resource path="res://Sprites/Enemies/Droid/droid_move01.png" type="Texture" id=31]
+[ext_resource path="res://Sprites/Enemies/Droid/droid_move02.png" type="Texture" id=32]
+[ext_resource path="res://Sprites/Enemies/Droid/droid_die01.png" type="Texture" id=33]
+[ext_resource path="res://Sprites/Enemies/Droid/droid_die02.png" type="Texture" id=34]
+[ext_resource path="res://Sprites/Enemies/Droid/droid_die03.png" type="Texture" id=35]
+[ext_resource path="res://Sprites/Enemies/Droid/droid_die05.png" type="Texture" id=36]
+[ext_resource path="res://Sprites/Enemies/Droid/droid_die04.png" type="Texture" id=37]
+[ext_resource path="res://Sprites/Enemies/Droid/droid_move05.png" type="Texture" id=38]
+[ext_resource path="res://Character/Enemy/healthbar.gd" type="Script" id=39]
+[ext_resource path="res://Sprites/Health/New Piskel-1.png (2).png" type="Texture" id=40]
+[ext_resource path="res://Sprites/Health/New Piskel-2.png (1).png" type="Texture" id=41]
+[ext_resource path="res://Sprites/Health/New Piskel-3.png (1).png" type="Texture" id=42]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -47,57 +55,76 @@ animations = [ {
 "name": "walk",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 22 ) ],
+"frames": [ ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ) ],
+"loop": false,
+"name": "die",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 30 ) ],
 "loop": true,
 "name": "dead",
 "speed": 0.0
 }, {
-"frames": [ ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 22 ) ],
+"frames": [ ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ) ],
 "loop": false,
-"name": "die",
+"name": "die2",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 31 ), ExtResource( 38 ), ExtResource( 32 ) ],
+"loop": true,
+"name": "walk2",
 "speed": 12.0
 } ]
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
-position = Vector2( 0, 0.279 )
+position = Vector2( -12.5136, -8.0625 )
 script = ExtResource( 1 )
 GRAVITY = 40
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 1.52679, 0.32959 )
-scale = Vector2( 0.386237, 0.426092 )
+position = Vector2( 9.43933, 10.5761 )
+scale = Vector2( 1.39189, 1.31051 )
 frames = SubResource( 1 )
-animation = "walk"
+animation = "walk2"
+frame = 2
 playing = true
 
+[node name="Control" type="Control" parent="AnimatedSprite"]
+margin_left = -6.73781
+margin_top = -7.0712
+margin_right = 33.2622
+margin_bottom = 32.9288
+script = ExtResource( 39 )
+
+[node name="HealthBar" type="TextureProgress" parent="AnimatedSprite/Control"]
+margin_left = -22.1601
+margin_top = -73.7839
+margin_right = 41.8399
+margin_bottom = -9.78391
+rect_scale = Vector2( 0.7, 0.7 )
+value = 100.0
+texture_under = ExtResource( 40 )
+texture_over = ExtResource( 41 )
+texture_progress = ExtResource( 42 )
+tint_progress = Color( 0.635294, 0.0588235, 0.0588235, 1 )
+
 [node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2( 24.7702, 3.48351 )
+position = Vector2( 26.4766, 8.60274 )
 scale = Vector2( 3, 3 )
 enabled = true
-cast_to = Vector2( 0, 23 )
+cast_to = Vector2( 0, 25 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2( -2.97197, 4.59307 )
+visible = false
+position = Vector2( -3.54077, 5.16187 )
 scale = Vector2( 4.1611, 6.32254 )
-polygon = PoolVector2Array( 0.270849, -9.63732, 7.67285, -7.92801, 9.23116, -2.80008, 6.89369, 1.98599, 7.54298, 4.97729, 8.84158, 6.77206, 8.58186, 9.93429, -5.18326, 10.0198, -5.18326, 6.4302, -9.85821, 4.29356, -6.22214, -0.834373, -5.44298, -8.18441 )
+polygon = PoolVector2Array( -1.01061, -8.88155, -0.533311, -8.94438, 2.71229, -9.00721, 3.8578, -7.56223, 3.47596, -5.04922, 6.62611, -3.9812, 12.64, -0.46299, 12.64, 1.10764, 5.86244, 0.981989, 5.09877, 5.5054, 4.62147, 11.9136, -2.72887, 11.9136, -3.68346, 5.37975, -3.588, 2.80392, -6.26085, 0.0396112, -6.16539, -4.16967 )
 
-[node name="Control" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-script = ExtResource( 31 )
-
-[node name="HealthBar" type="TextureProgress" parent="Control"]
-margin_left = -30.1235
-margin_top = -97.4567
-margin_right = 33.8765
-margin_bottom = -33.4567
-value = 100.0
-texture_under = ExtResource( 32 )
-texture_over = ExtResource( 33 )
-texture_progress = ExtResource( 34 )
-tint_progress = Color( 0.635294, 0.0588235, 0.0588235, 1 )
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 65.412, 6.82559 )
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

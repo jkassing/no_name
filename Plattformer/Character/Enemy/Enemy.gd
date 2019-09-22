@@ -7,16 +7,16 @@ func _ready():
     
 func dead():
     is_dead = true
-    $Control.visible = false
+    $AnimatedSprite/Control.visible = false
     motion = Vector2(0,0)
-    $AnimatedSprite.play("die")
+    $AnimatedSprite.play("die2")
     $CollisionPolygon2D.call_deferred("set_disabled",true)
     #get_parent().get_node("ScreenShake").screen_shake(1, 10, 100)
     $Timer.start()
 
 func hit():
     health.take_damage(1)
-    $Control._on_health_updated(0, 50)
+    $AnimatedSprite/Control._on_health_updated(0, 50)
     if health.health == 0:
         dead()
     
@@ -29,7 +29,7 @@ func _process(delta):
                 $AnimatedSprite.flip_h = false
         else:
                 $AnimatedSprite.flip_h = true
-        $AnimatedSprite.play("walk")
+        $AnimatedSprite.play("walk2")
         
         motion.y += GRAVITY
         
@@ -51,3 +51,8 @@ func _process(delta):
 
 func _on_Timer_timeout():
     queue_free()
+
+
+func _on_AnimatedSprite_animation_finished():
+    if is_dead:
+        self.position.y += 30
