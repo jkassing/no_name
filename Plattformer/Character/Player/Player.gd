@@ -1,15 +1,17 @@
 extends "res://Character/Character.gd"
 
 const FIREBALL = preload("res://unusedRes/Object/Fireball.tscn")
+onready var inventory = load("res://Items/Healing/inventory.gd").new()
 
 var just_got_hit = false
-signal got_hit
+var just_picked_up = false
 
 func _ready():
     GRAVITY = 40
     SPEED = 400
     JUMP_FORCE = -1200
-    health.set_health(3)
+    health.set_health(100)
+    
 
 # warning-ignore:unused_argument
 func _physics_process(delta):
@@ -93,7 +95,16 @@ func _physics_process(delta):
             fireball.position = $Position2D.global_position
             
         #***********************************************************************************#
-            
+        # HEALING 
+        if Input.is_action_just_pressed("key_q") && inventory._can_heal():
+            health.heal(50)
+            get_parent().get_node("Player/Camera2D/CanvasLayer/Health")._on_health_updated(0, -50)
+            inventory._use_item("HEAL")
+            $Camera2D/CanvasLayer/Inventory/Label.text = str(inventory.current_healkits)
+            print(inventory.current_healkits)
+        
+        
+        #***********************************************************************************#    
             
         if $RayCast2D.enabled == true && $RayCast2D.is_colliding():
             if "Enemy" in $RayCast2D.get_collider().name:
@@ -105,17 +116,25 @@ func _physics_process(delta):
         
         if get_slide_count() > 0:
             for i in range(get_slide_count()):
+                
                 if "Enemy" in get_slide_collision(i).collider.name:
                     hit()
+                elif "Heal" in get_slide_collision(i).collider.name && !just_picked_up:
+                    just_picked_up = true
+                    get_slide_collision(i).collider._exit()
+                    $ItemTimer.start()
+                    inventory._add_item("HEAL")
+                    $Camera2D/CanvasLayer/Inventory/Label.text = str(inventory.current_healkits)
         
         
 func hit():
+    
     if just_got_hit == false:
-        health.take_damage(1)
+        health.take_damage(34)
         just_got_hit = true
         get_parent().get_node("ScreenShake").screen_shake(1, 10, 100)
-        get_parent().get_node("Player/Camera2D/CanvasLayer/Health")._on_health_updated(0, 33)
-        if health.health == 0:
+        get_parent().get_node("Player/Camera2D/CanvasLayer/Health")._on_health_updated(0, 34)
+        if health.health <= 0:
             dead()      
         else:
             $HitTimer.start()
@@ -141,3 +160,6 @@ func _on_Timer_timeout():
 
 func _on_HitTimer_timeout():
     just_got_hit = false
+
+func _on_ItemTimer_timeout():
+    just_picked_up = false

@@ -11,6 +11,8 @@ export (Color) var danger_color = Color.red
 export (float, 0, 1, 0.05) var caution_zone = 0.5
 export (float, 0, 1, 0.05) var danger_zone = 0.2
 
+
+
 func _on_health_updated(health, amount):
     health_over.value -= amount
     update_tween.interpolate_property(health_under, "value", health_under.value, health_over.value, 0.4, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.4)

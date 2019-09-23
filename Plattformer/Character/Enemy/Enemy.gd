@@ -2,7 +2,7 @@ extends "res://Character/Character.gd"
 
 func _ready():
     SPEED = 150
-    health.set_health(2)
+    health.set_health(100)
     
     
 func dead():
@@ -15,9 +15,9 @@ func dead():
     $Timer.start()
 
 func hit():
-    health.take_damage(1)
+    health.take_damage(50)
     $AnimatedSprite/Control._on_health_updated(0, 50)
-    if health.health == 0:
+    if health.health <= 0:
         dead()
     
 func _process(delta):
