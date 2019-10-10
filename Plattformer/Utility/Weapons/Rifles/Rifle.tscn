@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sprites/Indvidual Sprites/Guns/gun.png" type="Texture" id=1]
+[ext_resource path="res://Utility/Weapons/Rifles/Rifle.gd" type="Script" id=2]
+
+[node name="Weapon" type="Sprite"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 1 )
+flip_h = true
+script = ExtResource( 2 )
+
+[node name="BulletSpawn" type="Position2D" parent="."]
+position = Vector2( 51.3907, 2.64511 )
+
+[node name="TimeBtwnShots" type="Timer" parent="."]
+wait_time = 0.5
+[connection signal="timeout" from="TimeBtwnShots" to="." method="_on_TimeBtwnShots_timeout"]
