@@ -2,17 +2,19 @@ extends "res://Character/Character.gd"
 
 const FIREBALL = preload("res://unusedRes/Object/Fireball.tscn")
 onready var inventory = load("res://Items/Healing/Inventory.gd").new()
-
-
+const HUD_PATH: String = "Camera2D/HUD"
+var hud_node: CanvasLayer
 var just_got_hit = false
-
 
 
 func _ready():
     GRAVITY = 40
     SPEED = 400
     JUMP_FORCE = -1200
+    hud_node = $Camera2D/HUD
+    inventory.init(hud_node, self)
     health.set_health(100)
+    health.pass_healthbar_node(hud_node.get_node("Healthbar"))
     
 
 # warning-ignore:unused_argument
@@ -29,25 +31,23 @@ func _physics_process(delta):
                 motion.x = SPEED
                 $AnimatedSprite.play("run")
                 $AnimatedSprite.flip_h = false
-                $Weapon.flip_h = true
+                inventory.flip(false)
 
                 if sign($FireballSpawnPoint.position.x) == -1:
                     $RayCast2D.set_cast_to(Vector2(20,0))
                     $FireballSpawnPoint.position.x *= -1
-                    $Weapon.position.x *= -1
-                    $Weapon/BulletSpawn.position.x *= -1
+                    inventory.flip_position()
             
         elif Input.is_key_pressed(KEY_A):
             if is_attacking == false:
                 motion.x = -SPEED
                 $AnimatedSprite.play("run")
                 $AnimatedSprite.flip_h = true
-                $Weapon.flip_h = false
+                inventory.flip(true)
                 if sign($FireballSpawnPoint.position.x) == 1:
                     $RayCast2D.set_cast_to(Vector2(-20,0))
                     $FireballSpawnPoint.position.x *= -1
-                    $Weapon.position.x *= -1
-                    $Weapon/BulletSpawn.position.x *= -1
+                    inventory.flip_position()
             
         else:
             motion.x = 0
@@ -78,8 +78,9 @@ func _physics_process(delta):
             $ClsnCrouching.set_disabled(true)
                 
                 
-        if Input.is_action_just_pressed("key_r"):
-            $Weapon.reload()        
+        if Input.is_action_just_pressed("reload"):
+            if inventory.cur_rifle != null:
+                inventory.cur_rifle.reload()
         
         #***********************************************************************************#
         # MELEE ATTACKS
@@ -90,8 +91,8 @@ func _physics_process(delta):
             $RayCast2D.enabled = true
             $AnimatedSprite.play("attack")
         elif Input.is_action_just_pressed("mouse_right") && !is_attacking:
-            $Weapon.shoot()
-            
+            if inventory.cur_rifle != null:
+                inventory.cur_rifle.shoot()
             #if is_on_floor():
             #    motion.x = 0
             #is_attacking = true
@@ -111,11 +112,10 @@ func _physics_process(delta):
             
         #***********************************************************************************#
         # HEALING 
-        if Input.is_action_just_pressed("key_q") && inventory._can_heal():
+        if Input.is_action_just_pressed("heal") && inventory._can_heal():
             health.heal(50)
-            get_parent().get_node("Player/Camera2D/CanvasLayer/Health")._on_health_updated(0, -50)
             inventory._use_item("HEAL")
-            $Camera2D/CanvasLayer/Inventory/Label.text = str(inventory.current_healkits)
+            $Camera2D/HUD/HealthSlot/Label.text = str(inventory.current_healkits)
             print(inventory.current_healkits)
         
         
@@ -142,7 +142,6 @@ func hit():
         health.take_damage(34)
         just_got_hit = true
         get_parent().get_node("ScreenShake").screen_shake(1, 10, 100)
-        get_parent().get_node("Player/Camera2D/CanvasLayer/Health")._on_health_updated(0, 34)
         if health.health <= 0:
             dead()      
         else:
@@ -155,6 +154,9 @@ func dead():
     $ClsnStanding.set_deferred("set_disabled", true)
     $ClsnCrouching.set_deferred("set_disabled", true)
     $Timer.start()
+
+func pick_up(item: String):
+    inventory._add_item(item)
 
 func _on_AnimatedSprite_animation_finished():
     is_attacking = false
